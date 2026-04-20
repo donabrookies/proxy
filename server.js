@@ -14,7 +14,7 @@ app.options('*', cors());
 app.use(express.json());
 
 const TALK_API_URL = 'https://talkapi.ingaja.com.br/api/messages/send';
-const TALK_API_TOKEN = '8rBs7ckC5OMpPD3YwQuZoZjioUkXgi';
+const TALK_API_TOKEN = 'xO6iMSrK0uecIJ2uh4TqJFZcuTo9th';
 
 app.post('/api/send-whatsapp', async (req, res) => {
   const { number, message } = req.body;
