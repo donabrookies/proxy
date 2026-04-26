@@ -18,7 +18,7 @@ app.use(express.json());
 // ─── Configurações da Evolution API (local via ngrok) ───────────────────────
 const EVOLUTION_URL      = 'https://dedo-no-boga-production.up.railway.app';
 const EVOLUTION_API_KEY  = '429683C4C977415CAAFCCE10F7D57E11';
-const EVOLUTION_INSTANCE = 'rola-pequena';
+const EVOLUTION_INSTANCE = 'rola pequena';
 // ────────────────────────────────────────────────────────────────────────────
 
 app.post('/api/send-whatsapp', async (req, res) => {
