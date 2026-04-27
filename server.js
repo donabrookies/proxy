@@ -9,29 +9,28 @@ app.use(cors({
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'apikey']
 }));
-app.options('*', cors());
+app.options(/.*/, cors()); // Express 5 wildcard compatibility
 app.use(express.json());
 
 // ─── Configurações da Evolution API ─────────────────────────────────────────
 const EVOLUTION_URL     = 'https://dedo-no-boga-production.up.railway.app';
 const EVOLUTION_API_KEY = '429683C4C977415CAAFCCE10F7D57E11';
-const EVOLUTION_INSTANCE = 'rola-pequena';
+const EVOLUTION_INSTANCE = 'clinica';
 // ────────────────────────────────────────────────────────────────────────────
 
-// Rota para envio de mensagem WhatsApp (instância dinâmica)
+// Rota para envio de mensagem WhatsApp
 app.post('/api/send-whatsapp', async (req, res) => {
-  const { number, message, instance } = req.body;
-  const instanceName = instance || EVOLUTION_INSTANCE;
+  const { number, message } = req.body;
 
   if (!number || !message) {
     return res.status(400).json({ error: 'Número e mensagem são obrigatórios' });
   }
 
   try {
-    console.log(`📱 Enviando mensagem para: ${number} via instância: ${instanceName}`);
+    console.log('📱 Enviando mensagem para:', number);
 
     const response = await fetch(
-      `${EVOLUTION_URL}/message/sendText/${instanceName}`,
+      `${EVOLUTION_URL}/message/sendText/${EVOLUTION_INSTANCE}`,
       {
         method: 'POST',
         headers: {
